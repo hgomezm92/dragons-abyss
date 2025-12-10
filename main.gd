@@ -7,7 +7,6 @@ func _ready() -> void:
 	mob.position = Vector2(640, 360)
 	add_child(mob)
 	
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
