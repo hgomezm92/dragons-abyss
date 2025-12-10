@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://vco48qus0oy0"]
+[gd_scene load_steps=13 format=3 uid="uid://vco48qus0oy0"]
 
 [ext_resource type="Script" uid="uid://cjorw345rquwi" path="res://scenes/dragon.gd" id="1_5q8uj"]
 [ext_resource type="PackedScene" uid="uid://dp4epjfsctt7x" path="res://scenes/fireball.tscn" id="2_lmr38"]
@@ -55,9 +55,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q8uj"]
-size = Vector2(130, 130)
+size = Vector2(124, 128)
 
-[node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("animation")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmr38"]
+size = Vector2(124, 128)
+
+[node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("animation") groups=["player"]]
+collision_mask = 7
 script = ExtResource("1_5q8uj")
 fireball_scene = ExtResource("2_lmr38")
 animation = NodePath("AnimatedSprite2D")
@@ -68,4 +72,13 @@ sprite_frames = SubResource("SpriteFrames_kcfnc")
 frame_progress = 0.92160714
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_5q8uj")
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_lmr38")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

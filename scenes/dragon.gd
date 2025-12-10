@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var fireball_scene: PackedScene
 @export var animation: AnimatedSprite2D
 var screen_size: Vector2
+var _health: int = 7
+signal damage_taken
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -50,3 +52,20 @@ func shoot_fireball() -> void:
 	# Añadir la bola a la escena
 	get_tree().current_scene.add_child(fireball)
 	
+func _take_damage(dmg: int):
+	_health -= dmg
+	damage_taken.emit(_health)
+	
+	modulate = Color(18.892, 18.892, 18.892)
+	await get_tree().create_timer(0.15).timeout
+	modulate = Color.WHITE
+	
+	if _health <= 0:
+		_death()
+
+func _death():
+	pass
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		_take_damage(1)

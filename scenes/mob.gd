@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var animation: AnimatedSprite2D
 @export var collision: CollisionShape2D
 @export var hearts: AnimatedSprite2D
-var _health: float = 2.0
+var _health: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,9 +16,9 @@ func _process(delta: float) -> void:
 
 func take_damage(dmg: float):
 	_health -= dmg
-	if _health == 1.0:
+	if _health == 1:
 		hearts.frame = 1
-	if _health <= 0.0:
+	if _health <= 0:
 		hearts.frame = 2
 		death()
 		return

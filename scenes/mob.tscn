@@ -1,10 +1,43 @@
-[gd_scene load_steps=26 format=3 uid="uid://b7aghcwevv3mr"]
+[gd_scene load_steps=36 format=3 uid="uid://b7aghcwevv3mr"]
 
 [ext_resource type="Script" uid="uid://d1maobrce47in" path="res://scenes/mob.gd" id="1_bsing"]
 [ext_resource type="Texture2D" uid="uid://bumgiibm5m7ci" path="res://assets/demon/HURT.png" id="2_71rcx"]
 [ext_resource type="Texture2D" uid="uid://ddoc22miwi5am" path="res://assets/demon/DEATH.png" id="2_d4cuo"]
+[ext_resource type="Texture2D" uid="uid://cux2cq3wktycb" path="res://assets/demon/ATTACK.png" id="2_h8ps3"]
 [ext_resource type="Texture2D" uid="uid://bq075nwqrmkb0" path="res://assets/demon/IDLE.png" id="3_71rcx"]
 [ext_resource type="Texture2D" uid="uid://fhjhendd1afh" path="res://assets/sprHeart.png" id="5_xsfyf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq56s"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(0, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkklv"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(79, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pch0e"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(158, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rswon"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(237, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtorj"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(316, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y8u8"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(395, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2edf"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(474, 0, 79, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q45gf"]
+atlas = ExtResource("2_h8ps3")
+region = Rect2(553, 0, 79, 69)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jr3yx"]
 atlas = ExtResource("2_71rcx")
@@ -66,6 +99,35 @@ region = Rect2(237, 0, 79, 69)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mq56s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkklv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pch0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rswon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtorj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y8u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2edf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q45gf")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jr3yx")
 }, {
 "duration": 1.0,
@@ -123,7 +185,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsing"]
-size = Vector2(79, 60)
+size = Vector2(64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eucmk"]
 atlas = ExtResource("5_xsfyf")
@@ -154,7 +216,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mob" type="CharacterBody2D" node_paths=PackedStringArray("animation", "collision", "hearts")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfby6"]
+size = Vector2(64, 64)
+
+[node name="Mob" type="CharacterBody2D" node_paths=PackedStringArray("animation", "collision", "hearts") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_bsing")
@@ -164,15 +229,17 @@ hearts = NodePath("Hearts")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wpivu")
-animation = &"damage"
-frame = 3
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_bsing")
 
 [node name="Hearts" type="AnimatedSprite2D" parent="."]
 position = Vector2(-11, -40)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mq56s")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_wfby6")
