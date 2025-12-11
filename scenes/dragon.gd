@@ -10,8 +10,8 @@ signal damage_taken
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
-func _process(delta: float) -> void:
-	var velocity: Vector2 =  Vector2.ZERO
+func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
 		animation.flip_h = false
@@ -27,8 +27,7 @@ func _process(delta: float) -> void:
 		velocity = velocity.normalized() * speed
 		animation.play()
 	
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
@@ -54,6 +53,7 @@ func shoot_fireball() -> void:
 	
 func _take_damage(dmg: int):
 	_health -= dmg
+	print("DENTRO DE LA FUNCION _take_damage")
 	damage_taken.emit(_health)
 	
 	modulate = Color(18.892, 18.892, 18.892)
@@ -66,6 +66,7 @@ func _take_damage(dmg: int):
 func _death():
 	pass
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		_take_damage(1)
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("DETECTA PERO NO ESTA EN EL GRUPO")
+	if area.is_in_group("enemy_hitbox"):
+		_take_damage(area.damage)

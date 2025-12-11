@@ -72,13 +72,11 @@ sprite_frames = SubResource("SpriteFrames_kcfnc")
 frame_progress = 0.92160714
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_5q8uj")
 
-[node name="Hitbox" type="Area2D" parent="."]
-visible = false
+[node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" groups=["player"]]
 shape = SubResource("RectangleShape2D_lmr38")
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
