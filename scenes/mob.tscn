@@ -220,13 +220,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfby6"]
 size = Vector2(64, 65)
 
-[node name="Mob" type="CharacterBody2D" node_paths=PackedStringArray("animation", "collision", "hearts") groups=["enemy"]]
+[node name="Mob" type="CharacterBody2D" node_paths=PackedStringArray("animation", "collision", "hearts", "hitbox") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_bsing")
 animation = NodePath("AnimatedSprite2D")
 collision = NodePath("CollisionShape2D")
 hearts = NodePath("Hearts")
+hitbox = NodePath("Hitbox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wpivu")
