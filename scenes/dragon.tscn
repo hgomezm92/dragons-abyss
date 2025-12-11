@@ -79,4 +79,6 @@ shape = SubResource("RectangleShape2D_5q8uj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" groups=["player"]]
 shape = SubResource("RectangleShape2D_lmr38")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

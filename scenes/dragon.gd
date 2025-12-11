@@ -3,8 +3,10 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var fireball_scene: PackedScene
 @export var animation: AnimatedSprite2D
+
 var screen_size: Vector2
 var _health: int = 7
+var _game_over_scene = preload("res://scenes/game_over.tscn")
 signal damage_taken
 
 func _ready() -> void:
@@ -53,7 +55,6 @@ func shoot_fireball() -> void:
 	
 func _take_damage(dmg: int):
 	_health -= dmg
-	print("DENTRO DE LA FUNCION _take_damage")
 	damage_taken.emit(_health)
 	
 	modulate = Color(18.892, 18.892, 18.892)
@@ -64,9 +65,10 @@ func _take_damage(dmg: int):
 		_death()
 
 func _death():
-	pass
+	get_tree().paused = true
+	var g_o_screen = _game_over_scene.instantiate()
+	get_tree().root.add_child(g_o_screen)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("DETECTA PERO NO ESTA EN EL GRUPO")
 	if area.is_in_group("enemy_hitbox"):
 		_take_damage(area.damage)
