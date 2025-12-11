@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var animation: AnimatedSprite2D
 @export var collision: CollisionShape2D
 @export var hearts: AnimatedSprite2D
-@export var speed: int = 200
+@export var speed: int = 150
 @export var hitbox: Area2D
 var _health: int = 2
 var _player: CharacterBody2D
@@ -14,17 +14,21 @@ func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if _player == null:
 		return
 	
 	var direction = (_player.global_position - global_position).normalized()
+	if direction.x > 0:
+		animation.flip_h = true
+	else:
+		animation.flip_h = false
 	velocity = direction * speed
 	if animation.animation == "death":
 		velocity = Vector2.ZERO
 	move_and_slide()
 
-func take_damage(dmg: float):
+func take_damage(dmg: int):
 	_health -= dmg
 	if _health == 1:
 		hearts.frame = 1
@@ -41,7 +45,18 @@ func _death():
 	self.collision_layer = 0
 	self.collision_mask = 0
 
-	animation.animation_finished.connect(_on_animation_finished)
+	# animation.animation_finished.connect(_on_animation_finished)
+	if !animation.animation_finished.is_connected(_on_animation_finished):
+		animation.animation_finished.connect(_on_animation_finished)  
+
+func attack_animation():
+	animation.play("attack")
+	# animation.animation_finished.connect(_on_animation_finished)
+	if !animation.animation_finished.is_connected(_on_animation_finished):
+		animation.animation_finished.connect(_on_animation_finished)   
 
 func _on_animation_finished():
-	queue_free()
+	if _health <= 0:
+		queue_free()
+	else:
+		_ready()

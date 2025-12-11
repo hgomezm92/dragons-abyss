@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var fireball_scene: PackedScene
 @export var animation: AnimatedSprite2D
+@export var collision: CollisionShape2D
 
 var screen_size: Vector2
 var _health: int = 7
@@ -12,7 +13,7 @@ signal damage_taken
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -72,3 +73,9 @@ func _death():
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
 		_take_damage(area.damage)
+		area.get_parent().attack_animation()
+		collision.set_deferred("disabled", true)
+
+func start(pos):
+	position = pos
+	show()
