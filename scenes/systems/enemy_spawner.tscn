@@ -21,8 +21,4 @@ curve = SubResource("Curve2D_iwxa7")
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="WaveTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
-[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

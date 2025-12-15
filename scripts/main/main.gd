@@ -12,4 +12,4 @@ func _ready() -> void:
 	_player.connect("damage_taken", _hud.update_health_bar)
 	_enemy_spawner.connect("wave_finished", _hud.update_wave_counter)
 	
-	_enemy_spawner.start()
+	_enemy_spawner.start_wave()

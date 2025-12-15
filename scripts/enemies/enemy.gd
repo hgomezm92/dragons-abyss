@@ -8,6 +8,8 @@ extends CharacterBody2D
 var _health: int = 2
 var _player: CharacterBody2D
 
+signal enemy_died
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation.play("idle")
@@ -44,6 +46,8 @@ func _death():
 	hitbox.remove_from_group("enemy_hitbox")
 	self.collision_layer = 0
 	self.collision_mask = 0
+	
+	enemy_died.emit()
 
 	if !animation.animation_finished.is_connected(_on_animation_finished):
 		animation.animation_finished.connect(_on_animation_finished)  

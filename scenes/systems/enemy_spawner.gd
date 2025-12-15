@@ -2,32 +2,33 @@ extends Node
 
 @export var enemy_scene: PackedScene
 @onready var _enemy_timer = $EnemySpawnTimer
-@onready var _wave_timer = $WaveTimer
 var _wave_count: int = 1
 var _spawn_interval: float = 2.0
-var _wave_time: float = 10.0
+var _enemies_alive: int = 0
+var _enemies_to_spawn: int = 0
+var _is_spawning_finished: bool = false
 
 signal wave_finished
 
-func start() -> void:
-	_enemy_timer.wait_time = _spawn_interval
-	_wave_timer.wait_time = _wave_time 
-	_enemy_timer.start()
-	_wave_timer.start()
-	print(_wave_count)
+func _get_enemy_count_for_wave(wave):
+	return 5 + wave * 2
+
+func start_wave() -> void:
+	print("Wave ", _wave_count)
 	
-func _on_wave_timer_timeout() -> void:
-	if _wave_count <= 5:
-		_wave_count += 1
-		wave_finished.emit(_wave_count)
-		_spawn_interval -= 0.5
-		_enemy_timer.stop()
-		start()
-
-func _on_enemy_spawn_timer_timeout() -> void:
-		_spawn_enemy()
-
+	_enemies_to_spawn = _get_enemy_count_for_wave(_wave_count)
+	_enemies_alive = 0
+	_is_spawning_finished = false
+	
+	_enemy_timer.wait_time = _spawn_interval
+	_enemy_timer.start()
+	
 func _spawn_enemy():
+	if _enemies_to_spawn <= 0:
+		_enemy_timer.stop()
+		_is_spawning_finished = true
+		_check_wave_end()
+		return
 	# Create a new instance of the Enemy scene
 	var enemy = enemy_scene.instantiate()
 
@@ -38,5 +39,30 @@ func _spawn_enemy():
 	# Set the enemy's position to the random location
 	enemy.position = enemy_spawn_location.position
 
+	enemy.enemy_died.connect(_on_enemy_died)
 	# Spawn the enemy by adding it to the Main scene
 	get_tree().root.add_child(enemy)
+	
+	_enemies_to_spawn -= 1
+	_enemies_alive += 1
+
+func _on_enemy_died():
+	_enemies_alive -= 1
+	_check_wave_end()
+
+func _check_wave_end():
+	if _is_spawning_finished and _enemies_alive <= 0:
+		_end_wave()
+
+func _end_wave():
+	print("Wave finished")
+	
+	_wave_count += 1
+	_spawn_interval = max(0.5, _spawn_interval - 0.3)
+	wave_finished.emit(_wave_count)
+	
+	await get_tree().create_timer(2.0).timeout
+	start_wave()
+
+func _on_enemy_spawn_timer_timeout() -> void:
+		_spawn_enemy()
