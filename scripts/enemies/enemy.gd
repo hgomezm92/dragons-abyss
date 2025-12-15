@@ -45,13 +45,11 @@ func _death():
 	self.collision_layer = 0
 	self.collision_mask = 0
 
-	# animation.animation_finished.connect(_on_animation_finished)
 	if !animation.animation_finished.is_connected(_on_animation_finished):
 		animation.animation_finished.connect(_on_animation_finished)  
 
 func attack_animation():
 	animation.play("attack")
-	# animation.animation_finished.connect(_on_animation_finished)
 	if !animation.animation_finished.is_connected(_on_animation_finished):
 		animation.animation_finished.connect(_on_animation_finished)   
 
@@ -60,3 +58,11 @@ func _on_animation_finished():
 		queue_free()
 	else:
 		_ready()
+		
+func knockback(direction: Vector2):
+		create_tween().tween_property(
+			self,
+			"position",
+			position + direction * 75,
+			0.15
+		)

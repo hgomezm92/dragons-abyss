@@ -8,6 +8,7 @@ var _speed: float = 300.0
 var _screen_size: Vector2
 var _health: int = 7
 var _game_over_scene = preload("res://scenes/ui/game_over.tscn")
+var _is_knocked_back: bool = false
 
 signal damage_taken
 
@@ -31,7 +32,9 @@ func _physics_process(_delta: float) -> void:
 		velocity = velocity.normalized() * _speed
 		_animation.play()
 	
-	move_and_slide()
+	if !_is_knocked_back:
+		move_and_slide()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
@@ -59,9 +62,19 @@ func _take_damage(dmg: int):
 	_health -= dmg
 	damage_taken.emit(_health)
 	
-	modulate = Color(18.892, 18.892, 18.892)
-	await get_tree().create_timer(0.15).timeout
-	modulate = Color.WHITE
+	var tween = create_tween()
+	tween.tween_property(
+		self,
+		"modulate",
+		Color(18.892, 18.892, 18.892),
+		0.15
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		self,
+		"modulate",
+		Color.WHITE,
+		0.15
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	if _health <= 0:
 		_death()
@@ -75,7 +88,27 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
 		_take_damage(area.damage)
 		area.get_parent().attack_animation()
+		#area.get_parent().knockback((global_position - area.position).normalized())
 		_collision.set_deferred("disabled", true)
+		_apply_knockback((global_position - area.global_position).normalized())
+		
+
+func _apply_knockback(direction: Vector2):
+	if _is_knocked_back:
+		return
+	
+	_is_knocked_back = true
+	
+	var tween = create_tween()
+	tween.tween_property(
+			self,
+			"global_position",
+			global_position + direction * 75,
+			0.15
+		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+	tween.finished.connect(func():
+		_is_knocked_back = false)
 
 func start(pos):
 	position = pos
