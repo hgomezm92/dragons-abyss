@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://dp4epjfsctt7x"]
+
+[ext_resource type="Script" uid="uid://b2ita3e00dvrk" path="res://scripts/projectiles/fireball.gd" id="1_kkddm"]
+[ext_resource type="Texture2D" uid="uid://cvwjkly1q3ta4" path="res://assets/animations/projectiles/fireball/B500-2.PNG" id="2_fcyka"]
+[ext_resource type="Texture2D" uid="uid://y3ntssodhiok" path="res://assets/animations/projectiles/fireball/B500-3.PNG" id="3_283ag"]
+[ext_resource type="Texture2D" uid="uid://d2gxouk2fnjig" path="res://assets/animations/projectiles/fireball/B500-4.PNG" id="4_dax74"]
+[ext_resource type="Texture2D" uid="uid://wkrlr4lei6fe" path="res://assets/animations/projectiles/fireball/FB500-1.png" id="5_h0utr"]
+[ext_resource type="Texture2D" uid="uid://dqiw7ewlpt6x3" path="res://assets/animations/projectiles/fireball/FB500-2.png" id="6_iapai"]
+[ext_resource type="Texture2D" uid="uid://bfxy5efk31iue" path="res://assets/animations/projectiles/fireball/FB500-3.png" id="7_wunie"]
+[ext_resource type="Texture2D" uid="uid://bttooj017pttf" path="res://assets/animations/projectiles/fireball/FB500-4.png" id="8_jpugm"]
+[ext_resource type="Texture2D" uid="uid://dl72g8g2mmmjh" path="res://assets/animations/projectiles/fireball/FB500-5.png" id="9_0hpdg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyo3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fcyka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_283ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dax74")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_h0utr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iapai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wunie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jpugm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0hpdg")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fb5b"]
+radius = 168.0476
+
+[node name="Fireball" type="Area2D" node_paths=PackedStringArray("animation")]
+scale = Vector2(0.1, 0.1)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_kkddm")
+animation = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wyo3q")
+animation = &"explode"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1fb5b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(139.99998, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
