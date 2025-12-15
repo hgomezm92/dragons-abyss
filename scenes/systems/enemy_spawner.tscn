@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://drdm14b5pvj1j"]
+
+[ext_resource type="Script" uid="uid://bgui5imk7bk58" path="res://scenes/systems/enemy_spawner.gd" id="1_f2tmk"]
+[ext_resource type="PackedScene" uid="uid://b7aghcwevv3mr" path="res://scenes/enemies/enemy.tscn" id="2_s47tq"]
+
+[sub_resource type="Curve2D" id="Curve2D_iwxa7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="EnemySpawner" type="Node"]
+script = ExtResource("1_f2tmk")
+enemy_scene = ExtResource("2_s47tq")
+
+[node name="EnemyPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_iwxa7")
+
+[node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

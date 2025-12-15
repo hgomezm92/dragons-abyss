@@ -88,7 +88,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
 		_take_damage(area.damage)
 		area.get_parent().attack_animation()
-		#area.get_parent().knockback((global_position - area.position).normalized())
 		_collision.set_deferred("disabled", true)
 		_apply_knockback((global_position - area.global_position).normalized())
 		

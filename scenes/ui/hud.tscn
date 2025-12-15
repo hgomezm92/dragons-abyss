@@ -67,9 +67,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("health_bar")]
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_oo0fn")
-health_bar = NodePath("Control/AnimatedSprite2D")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -81,3 +80,11 @@ offset_bottom = 40.0
 position = Vector2(120, 40)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mphia")
+
+[node name="Wave" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1200.0
+offset_top = 40.0
+offset_right = 1240.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40

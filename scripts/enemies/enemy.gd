@@ -58,11 +58,3 @@ func _on_animation_finished():
 		queue_free()
 	else:
 		_ready()
-		
-func knockback(direction: Vector2):
-		create_tween().tween_property(
-			self,
-			"position",
-			position + direction * 75,
-			0.15
-		)
