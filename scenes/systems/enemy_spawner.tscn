@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://drdm14b5pvj1j"]
 
-[ext_resource type="Script" uid="uid://bgui5imk7bk58" path="res://scenes/systems/enemy_spawner.gd" id="1_f2tmk"]
+[ext_resource type="Script" uid="uid://bgui5imk7bk58" path="res://scripts/systems/enemy_spawner.gd" id="1_f2tmk"]
 [ext_resource type="PackedScene" uid="uid://b7aghcwevv3mr" path="res://scenes/enemies/enemy.tscn" id="2_s47tq"]
 
 [sub_resource type="Curve2D" id="Curve2D_iwxa7"]

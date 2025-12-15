@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://mqy6u8kyumo6"]
+[gd_scene load_steps=6 format=3 uid="uid://mqy6u8kyumo6"]
 
 [ext_resource type="Script" uid="uid://cibmpbeturpqk" path="res://scripts/main/main.gd" id="1_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://cfkf0dl87l5hv" path="res://scenes/systems/game_manager.tscn" id="2_6q06x"]
 [ext_resource type="PackedScene" uid="uid://vco48qus0oy0" path="res://scenes/player/player.tscn" id="3_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://buvxgstxs1cu0" path="res://scenes/ui/hud.tscn" id="4_hujxm"]
 [ext_resource type="PackedScene" uid="uid://drdm14b5pvj1j" path="res://scenes/systems/enemy_spawner.tscn" id="4_l3cfh"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" node_paths=PackedStringArray("_game_manager", "_start_position")]
 script = ExtResource("1_l3cfh")
+_game_manager = NodePath("GameManager")
+_start_position = NodePath("StartPosition")
 
-[node name="Dragon" parent="." instance=ExtResource("3_ow5a4")]
+[node name="GameManager" parent="." instance=ExtResource("2_6q06x")]
+
+[node name="Player" parent="." instance=ExtResource("3_ow5a4")]
 
 [node name="HUD" parent="." instance=ExtResource("4_hujxm")]
 

@@ -7,10 +7,10 @@ extends CharacterBody2D
 var _speed: float = 300.0
 var _screen_size: Vector2
 var _health: int = 7
-var _game_over_scene = preload("res://scenes/ui/game_over.tscn")
 var _is_knocked_back: bool = false
 
 signal damage_taken
+signal player_dead
 
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size
@@ -80,9 +80,7 @@ func _take_damage(dmg: int):
 		_death()
 
 func _death():
-	get_tree().paused = true
-	var g_o_screen = _game_over_scene.instantiate()
-	get_tree().root.add_child(g_o_screen)
+	player_dead.emit()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
