@@ -67,3 +67,8 @@ func _end_wave():
 
 func _on_enemy_spawn_timer_timeout() -> void:
 		_spawn_enemy()
+		
+func reset():
+	_wave_count = 1
+	_spawn_interval = 2.0
+	_enemy_timer.stop()

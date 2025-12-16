@@ -11,7 +11,10 @@ script = ExtResource("1_l3cfh")
 _game_manager = NodePath("GameManager")
 _start_position = NodePath("StartPosition")
 
-[node name="GameManager" parent="." instance=ExtResource("2_6q06x")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("_hud", "_player", "_enemy_spawner") instance=ExtResource("2_6q06x")]
+_hud = NodePath("../HUD")
+_player = NodePath("../Player")
+_enemy_spawner = NodePath("../EnemySpawner")
 
 [node name="Player" parent="." instance=ExtResource("3_ow5a4")]
 

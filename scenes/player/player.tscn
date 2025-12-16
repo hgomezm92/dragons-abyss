@@ -60,12 +60,10 @@ size = Vector2(124, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmr38"]
 size = Vector2(124, 128)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "collision") groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 7
 script = ExtResource("1_5q8uj")
 fireball_scene = ExtResource("2_lmr38")
-animation = NodePath("AnimatedSprite2D")
-collision = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)

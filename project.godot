@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dragones"
-run/main_scene="uid://mqy6u8kyumo6"
+run/main_scene="uid://duu6ce53aitov"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [display]

@@ -109,4 +109,4 @@ func _apply_knockback(direction: Vector2):
 
 func start(pos):
 	position = pos
-	show()
+	_health = 7

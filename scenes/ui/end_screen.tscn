@@ -26,4 +26,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "RESTART"
 
+[node name="Menu" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "MENU"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
