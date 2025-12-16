@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://das7w6reo7w1e"]
 
-[ext_resource type="Script" uid="uid://cicdnfnb5wkbm" path="res://scripts/ui/game_over.gd" id="1_60xr3"]
+[ext_resource type="Script" uid="uid://cicdnfnb5wkbm" path="res://scripts/ui/end_screen.gd" id="1_4ttpn"]
 
-[node name="GameOver" type="CanvasLayer"]
+[node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_60xr3")
+script = ExtResource("1_4ttpn")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

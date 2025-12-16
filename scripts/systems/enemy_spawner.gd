@@ -9,13 +9,12 @@ var _enemies_to_spawn: int = 0
 var _is_spawning_finished: bool = false
 
 signal wave_finished
+signal win
 
 func _get_enemy_count_for_wave(wave):
 	return 5 + wave * 2
 
 func start_wave() -> void:
-	print("Wave ", _wave_count)
-	
 	_enemies_to_spawn = _get_enemy_count_for_wave(_wave_count)
 	_enemies_alive = 0
 	_is_spawning_finished = false
@@ -55,7 +54,9 @@ func _check_wave_end():
 		_end_wave()
 
 func _end_wave():
-	print("Wave finished")
+	if _wave_count >= 5:
+		win.emit("YOU WIN")
+		return
 	
 	_wave_count += 1
 	_spawn_interval = max(0.5, _spawn_interval - 0.3)

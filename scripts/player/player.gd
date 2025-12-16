@@ -80,7 +80,7 @@ func _take_damage(dmg: int):
 		_death()
 
 func _death():
-	player_dead.emit()
+	player_dead.emit("Game Over")
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
