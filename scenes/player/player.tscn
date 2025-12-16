@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://vco48qus0oy0"]
+[gd_scene load_steps=15 format=3 uid="uid://vco48qus0oy0"]
 
 [ext_resource type="Script" uid="uid://cjorw345rquwi" path="res://scripts/player/player.gd" id="1_5q8uj"]
 [ext_resource type="PackedScene" uid="uid://dp4epjfsctt7x" path="res://scenes/projectiles/fireball.tscn" id="2_lmr38"]
@@ -60,8 +60,18 @@ size = Vector2(124, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmr38"]
 size = Vector2(124, 128)
 
+[sub_resource type="Gradient" id="Gradient_gmlin"]
+colors = PackedColorArray(0, 0, 0, 0.5, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lvxji"]
+gradient = SubResource("Gradient_gmlin")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 7
+scale = Vector2(0.5, 0.5)
+collision_mask = 12
 script = ExtResource("1_5q8uj")
 fireball_scene = ExtResource("2_lmr38")
 
@@ -71,11 +81,21 @@ sprite_frames = SubResource("SpriteFrames_kcfnc")
 frame_progress = 0.92160714
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_5q8uj")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" groups=["player"]]
 shape = SubResource("RectangleShape2D_lmr38")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 75)
+scale = Vector2(1, 0.5)
+texture = SubResource("GradientTexture2D_lvxji")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -107,6 +107,5 @@ func _apply_knockback(direction: Vector2):
 	tween.finished.connect(func():
 		_is_knocked_back = false)
 
-func start(pos):
-	position = pos
+func start():
 	_health = 7

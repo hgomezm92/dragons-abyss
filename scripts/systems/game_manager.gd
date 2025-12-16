@@ -12,9 +12,9 @@ func _ready() -> void:
 	_enemy_spawner.connect("wave_finished", _hud.update_wave_counter)
 	_enemy_spawner.connect("win", _end)
 
-func new_game(start_position) -> void:
+func new_game() -> void:
 	_enemy_spawner.reset()
-	_player.start(start_position.position)
+	_player.start()
 	_enemy_spawner.start_wave()
 
 func _end(text: String):
