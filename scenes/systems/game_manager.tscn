@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfkf0dl87l5hv"]
+[gd_scene load_steps=2 format=3 uid="uid://cfkf0dl87l5hv"]
 
 [ext_resource type="Script" uid="uid://dupc2pg3id5f0" path="res://scripts/systems/game_manager.gd" id="1_sry45"]
-[ext_resource type="PackedScene" uid="uid://buvxgstxs1cu0" path="res://scenes/ui/hud.tscn" id="2_qwvo8"]
-[ext_resource type="PackedScene" uid="uid://vco48qus0oy0" path="res://scenes/player/player.tscn" id="3_5l3e4"]
-[ext_resource type="PackedScene" uid="uid://drdm14b5pvj1j" path="res://scenes/systems/enemy_spawner.tscn" id="4_1s2k2"]
 
 [node name="GameManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_sry45")
-hud = ExtResource("2_qwvo8")
-_player = ExtResource("3_5l3e4")
-_enemy_spawner = ExtResource("4_1s2k2")

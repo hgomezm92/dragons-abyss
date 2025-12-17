@@ -3,15 +3,39 @@ extends Node
 @export var _hud: CanvasLayer
 @export var _player: CharacterBody2D
 @export var _enemy_spawner: Node
+@export var _pause_menu: CanvasLayer
 var _end_scene: PackedScene = preload("res://scenes/ui/end_screen.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_player.connect("damage_taken", _hud.update_health_bar)
 	_player.connect("player_dead", _end)
+	
 	_enemy_spawner.connect("wave_finished", _hud.update_wave_counter)
 	_enemy_spawner.connect("win", _end)
 	_enemy_spawner.connect("enemy_count_changed", _hud.update_enemies_left)
+	
+	_pause_menu.connect("resume", _toggle_pause)
+	_pause_menu.connect("restart", _restart)
+	_pause_menu.connect("menu", _go_to_menu)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause_menu"):
+		_toggle_pause()
+
+func _toggle_pause():
+	if get_tree().paused:
+		_resume_game()
+	else:
+		_pause_game()
+
+func _resume_game():
+	get_tree().paused = false
+	_pause_menu.hide()
+	
+func _pause_game():
+	get_tree().paused = true
+	_pause_menu.show()
 
 func new_game() -> void:
 	_enemy_spawner.reset()

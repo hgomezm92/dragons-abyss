@@ -21,8 +21,7 @@ func _process(delta: float) -> void:
 func _input(event):
 	if _parent == "Main" and !get_tree().paused:
 		if event.is_action_pressed("shoot"):
-			if event.pressed:
-				_sprite.play("sight_pressed")
+			_sprite.play("sight_pressed")
 		else:
 			_sprite.play("sight_idle")
 	else:

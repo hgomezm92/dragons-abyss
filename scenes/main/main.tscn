@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqy6u8kyumo6"]
+[gd_scene load_steps=9 format=3 uid="uid://mqy6u8kyumo6"]
 
 [ext_resource type="Script" uid="uid://cibmpbeturpqk" path="res://scripts/main/main.gd" id="1_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://cfkf0dl87l5hv" path="res://scenes/systems/game_manager.tscn" id="2_6q06x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drdm14b5pvj1j" path="res://scenes/systems/enemy_spawner.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://lqlerh34caxs" path="res://scenes/maps/background.tscn" id="6_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://b6ajjw14dik3m" path="res://scenes/ui/cursor.tscn" id="7_hujxm"]
+[ext_resource type="PackedScene" uid="uid://cw6vq5coxkkih" path="res://scenes/ui/pause_menu.tscn" id="8_yyfjg"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("_game_manager")]
 script = ExtResource("1_l3cfh")
@@ -15,10 +16,11 @@ _game_manager = NodePath("GameManager")
 [node name="Background" parent="." instance=ExtResource("6_ow5a4")]
 z_index = -2
 
-[node name="GameManager" parent="." node_paths=PackedStringArray("_hud", "_player", "_enemy_spawner") instance=ExtResource("2_6q06x")]
+[node name="GameManager" parent="." node_paths=PackedStringArray("_hud", "_player", "_enemy_spawner", "_pause_menu") instance=ExtResource("2_6q06x")]
 _hud = NodePath("../HUD")
 _player = NodePath("../Player")
 _enemy_spawner = NodePath("../EnemySpawner")
+_pause_menu = NodePath("../PauseMenu")
 
 [node name="Player" parent="." instance=ExtResource("3_ow5a4")]
 
@@ -27,3 +29,6 @@ _enemy_spawner = NodePath("../EnemySpawner")
 [node name="EnemySpawner" parent="." instance=ExtResource("4_l3cfh")]
 
 [node name="Cursor" parent="." instance=ExtResource("7_hujxm")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_yyfjg")]
+visible = false
