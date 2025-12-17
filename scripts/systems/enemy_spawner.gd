@@ -5,18 +5,23 @@ extends Node
 @onready var _spawn_points: Array[Node] = $SpawnPoints.get_children()
 var _wave_count: int = 1
 var _spawn_interval: float = 2.0
+var _enemies_for_wave: int
 var _enemies_alive: int = 0
 var _enemies_to_spawn: int = 0
 var _is_spawning_finished: bool = false
 
 signal wave_finished
 signal win
+signal enemy_count_changed
 
 func _get_enemy_count_for_wave(wave):
 	return 5 + wave * 2
 
 func start_wave() -> void:
 	_enemies_to_spawn = _get_enemy_count_for_wave(_wave_count)
+	_enemies_for_wave = _get_enemy_count_for_wave(_wave_count)
+	
+	enemy_count_changed.emit(_enemies_for_wave)
 	_enemies_alive = 0
 	_is_spawning_finished = false
 	
@@ -55,6 +60,8 @@ func _spawn_enemy():
 
 func _on_enemy_died():
 	_enemies_alive -= 1
+	enemy_count_changed.emit(_enemies_for_wave - 1)
+	_enemies_for_wave -= 1
 	_check_wave_end()
 
 func _check_wave_end():

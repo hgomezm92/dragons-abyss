@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var _health_bar = $Control/AnimatedSprite2D
 @onready var _wave_counter = $Control/Wave
+@onready var _enemies_left = $Control/EnemiesLeft
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,3 +14,6 @@ func update_health_bar(frame):
 	
 func update_wave_counter(wave):
 	_wave_counter.text = str(wave)
+
+func update_enemies_left(enemies):
+	_enemies_left.text = str(enemies)

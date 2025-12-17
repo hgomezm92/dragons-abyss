@@ -11,6 +11,7 @@ func _ready() -> void:
 	_player.connect("player_dead", _end)
 	_enemy_spawner.connect("wave_finished", _hud.update_wave_counter)
 	_enemy_spawner.connect("win", _end)
+	_enemy_spawner.connect("enemy_count_changed", _hud.update_enemies_left)
 
 func new_game() -> void:
 	_enemy_spawner.reset()

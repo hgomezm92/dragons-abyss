@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://buvxgstxs1cu0"]
+[gd_scene load_steps=18 format=3 uid="uid://buvxgstxs1cu0"]
 
 [ext_resource type="Texture2D" uid="uid://lt81gqg73cf7" path="res://assets/animations/ui/dragonhpbar.png" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://c4i1j57up62w0" path="res://scripts/ui/hud.gd" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://oy7f7cxypq6q" path="res://assets/sprites/FreeHorrorUi.png" id="3_bo48s"]
+[ext_resource type="FontFile" uid="uid://c1s37wbiww22t" path="res://assets/fonts/Mork Dungeon.ttf" id="4_8qguk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oo0fn"]
 atlas = ExtResource("1_ahhtf")
@@ -67,6 +69,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qguk"]
+atlas = ExtResource("3_bo48s")
+region = Rect2(8, 105, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo48s"]
+atlas = ExtResource("3_bo48s")
+region = Rect2(65, 105, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136eg"]
+atlas = ExtResource("3_bo48s")
+region = Rect2(130, 66, 28, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj5la"]
+atlas = ExtResource("3_bo48s")
+region = Rect2(166, 70, 20, 21)
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_oo0fn")
 
@@ -77,14 +95,49 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(120, 40)
-scale = Vector2(2, 2)
+position = Vector2(72, 32)
 sprite_frames = SubResource("SpriteFrames_mphia")
+
+[node name="EnemiesLeftBackground" type="Sprite2D" parent="Control"]
+position = Vector2(1216, 32)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_8qguk")
+
+[node name="WaveBackground" type="Sprite2D" parent="Control"]
+position = Vector2(640, 32)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_bo48s")
 
 [node name="Wave" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 1200.0
-offset_top = 40.0
-offset_right = 1240.0
-offset_bottom = 63.0
-theme_override_font_sizes/font_size = 40
+offset_left = 632.0
+offset_top = 3.0
+offset_right = 672.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.84313726, 0.8156863, 0.7529412, 1)
+theme_override_fonts/font = ExtResource("4_8qguk")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WaveIcon" type="Sprite2D" parent="Control"]
+position = Vector2(627, 29)
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_136eg")
+
+[node name="EnemiesLeftLogo" type="Sprite2D" parent="Control"]
+position = Vector2(1190, 29)
+texture = SubResource("AtlasTexture_oj5la")
+
+[node name="EnemiesLeft" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1208.0
+offset_top = 18.0
+offset_right = 1248.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.84313726, 0.8156863, 0.7529412, 1)
+theme_override_fonts/font = ExtResource("4_8qguk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
