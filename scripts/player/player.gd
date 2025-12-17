@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 @export var fireball_scene: PackedScene
 @onready var _animation = $AnimatedSprite2D
-@onready var _collision = $CollisionShape2D
 
 var _speed: float = 300.0
 var _screen_size: Vector2
 var _health: int = 7
-var _is_knocked_back: bool = false
+var _knockback_velocity: Vector2 = Vector2.ZERO
+var _knockback_decay := 1200.0
 
 signal damage_taken
 signal player_dead
@@ -16,25 +16,29 @@ func _ready() -> void:
 	_screen_size = get_viewport_rect().size
 
 func _physics_process(_delta: float) -> void:
-	velocity = Vector2.ZERO
+	var input_velocity = _get_input_direction() * _speed
+	_animation.play()
+		
+	velocity = input_velocity + _knockback_velocity
+	
+	move_and_slide()
+	
+	_knockback_velocity = _knockback_velocity.move_toward(Vector2.ZERO, _knockback_decay * _delta)
+
+func _get_input_direction() -> Vector2:
+	var direction := Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+		direction.x += 1
 		_animation.flip_h = false
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
+		direction.x -= 1
 		_animation.flip_h = true
 	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+		direction.y += 1
 	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+		direction.y -= 1
 	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * _speed
-		_animation.play()
-	
-	if !_is_knocked_back:
-		move_and_slide()
-
+	return direction.normalized()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
@@ -86,26 +90,10 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):
 		_take_damage(area.damage)
 		area.get_parent().attack_animation()
-		_collision.set_deferred("disabled", true)
 		_apply_knockback((global_position - area.global_position).normalized())
-		
 
-func _apply_knockback(direction: Vector2):
-	if _is_knocked_back:
-		return
-	
-	_is_knocked_back = true
-	
-	var tween = create_tween()
-	tween.tween_property(
-			self,
-			"global_position",
-			global_position + direction * 75,
-			0.15
-		).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	
-	tween.finished.connect(func():
-		_is_knocked_back = false)
+func _apply_knockback(direction: Vector2, force := 400.0):
+	_knockback_velocity = direction * force
 
 func start():
 	_health = 7
