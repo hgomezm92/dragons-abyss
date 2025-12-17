@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6ajjw14dik3m"]
+
+[ext_resource type="Script" uid="uid://dlfcwl4urvkqa" path="res://scripts/ui/cursor.gd" id="1_qi3ym"]
+[ext_resource type="Texture2D" uid="uid://d0xamaq7sstyl" path="res://assets/animations/ui/sprCursor.png" id="2_gbfun"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi3ym"]
+atlas = ExtResource("2_gbfun")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbfun"]
+atlas = ExtResource("2_gbfun")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8run"]
+atlas = ExtResource("2_gbfun")
+region = Rect2(135, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyfjg"]
+atlas = ExtResource("2_gbfun")
+region = Rect2(180, 0, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blune"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi3ym")
+}],
+"loop": true,
+"name": &"hand_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbfun")
+}],
+"loop": true,
+"name": &"hand_pressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8run")
+}],
+"loop": true,
+"name": &"sight_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyfjg")
+}],
+"loop": true,
+"name": &"sight_pressed",
+"speed": 5.0
+}]
+
+[node name="Cursor" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_qi3ym")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_blune")
+animation = &"hand_idle"
