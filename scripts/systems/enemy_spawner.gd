@@ -37,10 +37,18 @@ func _spawn_enemy():
 
 	# Set the enemy's position to the random location
 	enemy.global_position = enemy_spawn_location.global_position
+	enemy.modulate.a = 0.0
 
 	enemy.enemy_died.connect(_on_enemy_died)
 	# Spawn the enemy by adding it to the Main scene
 	get_parent().add_child(enemy)
+	
+	create_tween().tween_property(
+		enemy,
+		"modulate:a",
+		1.0,
+		0.5
+	)
 	
 	_enemies_to_spawn -= 1
 	_enemies_alive += 1
