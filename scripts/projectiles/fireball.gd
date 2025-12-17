@@ -14,9 +14,6 @@ func _process(delta: float) -> void:
 	if animation.is_playing() == false:
 		queue_free()
 
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	_explode()
-
 func _explode():
 	_is_exploding = true
 	animation.play("explode")

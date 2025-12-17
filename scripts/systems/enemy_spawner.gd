@@ -2,6 +2,7 @@ extends Node
 
 @export var enemy_scene: PackedScene
 @onready var _enemy_timer = $EnemySpawnTimer
+@onready var _spawn_points: Array[Node] = $SpawnPoints.get_children()
 var _wave_count: int = 1
 var _spawn_interval: float = 2.0
 var _enemies_alive: int = 0
@@ -32,15 +33,14 @@ func _spawn_enemy():
 	var enemy = enemy_scene.instantiate()
 
 	# Choose a random location on Path2D
-	var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
-	enemy_spawn_location.progress_ratio = randf()
+	var enemy_spawn_location = _spawn_points.pick_random()
 
 	# Set the enemy's position to the random location
-	enemy.position = enemy_spawn_location.position
+	enemy.global_position = enemy_spawn_location.global_position
 
 	enemy.enemy_died.connect(_on_enemy_died)
 	# Spawn the enemy by adding it to the Main scene
-	get_tree().root.add_child(enemy)
+	get_parent().add_child(enemy)
 	
 	_enemies_to_spawn -= 1
 	_enemies_alive += 1

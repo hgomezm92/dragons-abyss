@@ -10,7 +10,7 @@
 [node name="Main" type="Node" node_paths=PackedStringArray("_game_manager", "_start_position")]
 script = ExtResource("1_l3cfh")
 _game_manager = NodePath("GameManager")
-_start_position = NodePath("StartPosition")
+_start_position = NodePath("")
 
 [node name="Background" parent="." instance=ExtResource("6_ow5a4")]
 z_index = -2
@@ -23,8 +23,5 @@ _enemy_spawner = NodePath("../EnemySpawner")
 [node name="Player" parent="." instance=ExtResource("3_ow5a4")]
 
 [node name="HUD" parent="." instance=ExtResource("4_hujxm")]
-
-[node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(640, 360)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_l3cfh")]
