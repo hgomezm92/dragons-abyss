@@ -91,6 +91,10 @@ visible = false
 shape = SubResource("RectangleShape2D_lmr38")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1600
+limit_top = -1120
+limit_right = 1600
+limit_bottom = 1120
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
