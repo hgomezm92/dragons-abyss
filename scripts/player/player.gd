@@ -17,7 +17,7 @@ func _ready() -> void:
 	_screen_size = get_viewport_rect().size
 	_animation.play()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_face_mouse()
 
 func _physics_process(_delta: float) -> void:
