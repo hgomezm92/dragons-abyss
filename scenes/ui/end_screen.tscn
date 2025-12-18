@@ -1,35 +1,64 @@
-[gd_scene load_steps=2 format=3 uid="uid://das7w6reo7w1e"]
+[gd_scene load_steps=9 format=3 uid="uid://das7w6reo7w1e"]
 
 [ext_resource type="Script" uid="uid://cicdnfnb5wkbm" path="res://scripts/ui/end_screen.gd" id="1_4ttpn"]
+[ext_resource type="Texture2D" uid="uid://by61cenmqvghj" path="res://themes/panel_menu.tres" id="2_h1n6l"]
+[ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="2_wgyui"]
+[ext_resource type="Theme" uid="uid://csg3kd0k6v0uk" path="res://themes/buttons/button.tres" id="3_53v5j"]
+[ext_resource type="StyleBox" uid="uid://cx1y1c5niktmr" path="res://themes/buttons/normal.tres" id="4_eok5x"]
+[ext_resource type="StyleBox" uid="uid://cd1ecq0wuooqr" path="res://themes/buttons/pressed.tres" id="5_h1n6l"]
+[ext_resource type="StyleBox" uid="uid://ceo5y8hndrelp" path="res://themes/buttons/hover.tres" id="6_w8f1j"]
+[ext_resource type="StyleBox" uid="uid://ds0rybawj1ohp" path="res://themes/buttons/focus.tres" id="7_0bhhc"]
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_4ttpn")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Panel" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.5)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_h1n6l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -158.0
+offset_right = 260.0
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("2_wgyui")
 text = "GAME OVER"
 
-[node name="Restart" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Restart" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("3_53v5j")
+theme_override_styles/normal = ExtResource("4_eok5x")
+theme_override_styles/pressed = ExtResource("5_h1n6l")
+theme_override_styles/hover = ExtResource("6_w8f1j")
+theme_override_styles/focus = ExtResource("7_0bhhc")
 text = "RESTART"
 
-[node name="Menu" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Menu" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("3_53v5j")
+theme_override_styles/normal = ExtResource("4_eok5x")
+theme_override_styles/pressed = ExtResource("5_h1n6l")
+theme_override_styles/hover = ExtResource("6_w8f1j")
+theme_override_styles/focus = ExtResource("7_0bhhc")
 text = "MENU"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

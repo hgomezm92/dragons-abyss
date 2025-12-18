@@ -1,40 +1,126 @@
-[gd_scene load_steps=4 format=3 uid="uid://duu6ce53aitov"]
+[gd_scene load_steps=12 format=3 uid="uid://duu6ce53aitov"]
 
 [ext_resource type="Script" uid="uid://dfmenro3a67pm" path="res://scripts/ui/menu.gd" id="1_wedc3"]
 [ext_resource type="PackedScene" uid="uid://mqy6u8kyumo6" path="res://scenes/main/main.tscn" id="2_c2n5p"]
+[ext_resource type="Texture2D" uid="uid://by61cenmqvghj" path="res://themes/panel_menu.tres" id="3_288ov"]
 [ext_resource type="PackedScene" uid="uid://b6ajjw14dik3m" path="res://scenes/ui/cursor.tscn" id="3_c2n5p"]
+[ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="3_w6y0u"]
+[ext_resource type="Theme" uid="uid://csg3kd0k6v0uk" path="res://themes/buttons/button.tres" id="4_cx0sj"]
+[ext_resource type="StyleBox" uid="uid://cx1y1c5niktmr" path="res://themes/buttons/normal.tres" id="5_1pxh0"]
+[ext_resource type="StyleBox" uid="uid://cd1ecq0wuooqr" path="res://themes/buttons/pressed.tres" id="6_e11en"]
+[ext_resource type="StyleBox" uid="uid://ceo5y8hndrelp" path="res://themes/buttons/hover.tres" id="7_288ov"]
+[ext_resource type="StyleBox" uid="uid://ds0rybawj1ohp" path="res://themes/buttons/focus.tres" id="8_e11en"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_288ov"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_wedc3")
 _main = ExtResource("2_c2n5p")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Background" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_288ov")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
+[node name="Panel" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_288ov")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -369.5
+offset_top = -158.0
+offset_right = 369.5
+offset_bottom = 158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("3_w6y0u")
 text = "DRAGON'S ABYSS"
 
-[node name="Start" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Start" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("4_cx0sj")
+theme_override_styles/normal = ExtResource("5_1pxh0")
+theme_override_styles/pressed = ExtResource("6_e11en")
+theme_override_styles/hover = ExtResource("7_288ov")
+theme_override_styles/focus = ExtResource("8_e11en")
 text = "START"
 
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme = ExtResource("4_cx0sj")
+theme_override_styles/normal = ExtResource("5_1pxh0")
+theme_override_styles/pressed = ExtResource("6_e11en")
+theme_override_styles/hover = ExtResource("7_288ov")
+theme_override_styles/focus = ExtResource("8_e11en")
 text = "QUIT"
+
+[node name="Version" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -32.0
+offset_right = -18.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_w6y0u")
+theme_override_font_sizes/font_size = 16
+text = "v0.0.8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Developer" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -32.0
+offset_right = 205.0
+offset_bottom = -9.0
+grow_vertical = 0
+theme = ExtResource("3_w6y0u")
+theme_override_font_sizes/font_size = 16
+text = "Developed by Aituk"
+
+[node name="InProgress" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 16.0
+offset_right = 90.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme = ExtResource("3_w6y0u")
+theme_override_font_sizes/font_size = 16
+text = "WORK IN PROGRESS"
 
 [node name="Cursor" parent="." instance=ExtResource("3_c2n5p")]
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

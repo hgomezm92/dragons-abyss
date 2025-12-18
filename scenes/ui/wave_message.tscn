@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://7atdlx1ni5r1"]
 
-[ext_resource type="FontFile" uid="uid://c1s37wbiww22t" path="res://assets/fonts/Mork Dungeon.ttf" id="1_wxq66"]
+[ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="1_loqba"]
 
 [node name="WaveMessage" type="CanvasLayer"]
 
@@ -10,10 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.84313726, 0.8156863, 0.7529412, 1)
+theme = ExtResource("1_loqba")
 theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_wxq66")
-theme_override_font_sizes/font_size = 40
 text = "WAVE FINISHED
 BE READY!"
 horizontal_alignment = 1

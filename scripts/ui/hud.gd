@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var _health_bar = $Control/AnimatedSprite2D
+@onready var _health_bar = $Control/HealthBar
 @onready var _wave_counter = $Control/Wave
 @onready var _enemies_left = $Control/EnemiesLeft
 
