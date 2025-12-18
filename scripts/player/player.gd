@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var fireball_scene: PackedScene
+@export var shoot_position: Marker2D
 @onready var _animation = $AnimatedSprite2D
 
 var _speed: float = 300.0
@@ -14,10 +15,13 @@ signal player_dead
 
 func _ready() -> void:
 	_screen_size = get_viewport_rect().size
+	_animation.play()
+
+func _process(delta: float) -> void:
+	_face_mouse()
 
 func _physics_process(_delta: float) -> void:
 	var input_velocity = _get_input_direction() * _speed
-	_animation.play()
 		
 	velocity = input_velocity + _knockback_velocity
 	
@@ -29,10 +33,10 @@ func _get_input_direction() -> Vector2:
 	var direction := Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-		_animation.flip_h = false
+		#_animation.flip_h = false
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		_animation.flip_h = true
+		#_animation.flip_h = true
 	if Input.is_action_pressed("move_down"):
 		direction.y += 1
 	if Input.is_action_pressed("move_up"):
@@ -44,16 +48,23 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot"):
 		_shoot_fireball()
 
+func _face_mouse():
+	var mouse_pos: Vector2 = to_local(get_global_mouse_position())
+	if mouse_pos.x < 0:
+		scale.x = -1
+	else:
+		scale.x = 1
+	
 func _shoot_fireball() -> void:
 	var fireball = fireball_scene.instantiate()
 	
 	# Posicion inicial = centro del jugador
-	fireball.position = global_position
-	fireball.z_index = -1
+	fireball.position = shoot_position.global_position
+	fireball.z_index = 1
 	
 	# Direccion = raton
 	var mouse_position: Vector2 = get_global_mouse_position()
-	var dir = (mouse_position - global_position).normalized()
+	var dir = (mouse_position - shoot_position.global_position).normalized()
 	fireball.direction = dir
 	
 	# Rotacion de la bola
