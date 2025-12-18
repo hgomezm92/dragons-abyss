@@ -53,7 +53,7 @@ func _spawn_enemy():
 		"modulate:a",
 		1.0,
 		0.5
-	)
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	_enemies_to_spawn -= 1
 	_enemies_alive += 1
@@ -72,6 +72,7 @@ func _end_wave():
 	if _wave_count >= 5:
 		win.emit("YOU WIN")
 		return
+	
 	
 	_wave_count += 1
 	_spawn_interval = max(0.5, _spawn_interval - 0.3)

@@ -1,23 +1,24 @@
 extends Node
 
-@export var _hud: CanvasLayer
-@export var _player: CharacterBody2D
-@export var _enemy_spawner: Node
-@export var _pause_menu: CanvasLayer
+@export var hud: CanvasLayer
+@export var player: CharacterBody2D
+@export var enemy_spawner: Node
+@export var pause_menu: CanvasLayer
+@export var wave_message: CanvasLayer
 var _end_scene: PackedScene = preload("res://scenes/ui/end_screen.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_player.connect("damage_taken", _hud.update_health_bar)
-	_player.connect("player_dead", _end)
+	player.connect("damage_taken", hud.update_health_bar)
+	player.connect("player_dead", _end)
 	
-	_enemy_spawner.connect("wave_finished", _hud.update_wave_counter)
-	_enemy_spawner.connect("win", _end)
-	_enemy_spawner.connect("enemy_count_changed", _hud.update_enemies_left)
+	enemy_spawner.connect("wave_finished", _change_wave)
+	enemy_spawner.connect("win", _end)
+	enemy_spawner.connect("enemy_count_changed", hud.update_enemies_left)
 	
-	_pause_menu.connect("resume", _toggle_pause)
-	_pause_menu.connect("restart", _restart)
-	_pause_menu.connect("menu", _go_to_menu)
+	pause_menu.connect("resume", _toggle_pause)
+	pause_menu.connect("restart", _restart)
+	pause_menu.connect("menu", _go_to_menu)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_menu"):
@@ -31,16 +32,16 @@ func _toggle_pause():
 
 func _resume_game():
 	get_tree().paused = false
-	_pause_menu.hide()
+	pause_menu.hide()
 	
 func _pause_game():
 	get_tree().paused = true
-	_pause_menu.show()
+	pause_menu.show()
 
 func new_game() -> void:
-	_enemy_spawner.reset()
-	_player.start()
-	_enemy_spawner.start_wave()
+	enemy_spawner.reset()
+	player.start()
+	enemy_spawner.start_wave()
 
 func _end(text: String):
 	get_tree().paused = true
@@ -59,3 +60,23 @@ func _go_to_menu():
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ui/menu.tscn")
+	
+func _change_wave(wave):
+	hud.update_wave_counter(wave)
+	wave_message.show()
+	create_tween().tween_property(
+		wave_message.get_child(0),
+		"modulate:a",
+		1.0,
+		0.5
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await get_tree().create_timer(1.0).timeout
+	create_tween().tween_property(
+		wave_message.get_child(0),
+		"modulate:a",
+		0.0,
+		0.5
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await get_tree().create_timer(1.0).timeout
+	wave_message.hide()
+	
