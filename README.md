@@ -13,14 +13,12 @@ The game is in an **early development stage**.
 
 Implemented features so far:
 - Wave-based enemy system
-- Enemy spawner with increasing difficulty
 - Player movement and shooting
 - Basic knockback and collisions
 - Camera following the player with map limits
 - Tile-based map with solid collisions
 - HUD with wave counter and remaining enemies
 - Pause menu
-- Custom animated cursor
 
 Planned features include:
 - New enemy types
@@ -35,7 +33,7 @@ Planned features include:
 
 - **Move:** WASD
 - **Aim:** Mouse
-- **Shoot:** Left Mouse Button
+- **Shoot:** Left Mouse Button or Space
 - **Pause:** ESC
 
 Survive as many waves as possible by defeating enemies and upgrading your abilities between waves.
@@ -51,7 +49,7 @@ Survive as many waves as possible by defeating enemies and upgrading your abilit
 
 ## Assets & Credits
 
-Some assets used in this project are created by third parties.  
+Assets used in this project are created by third parties.  
 All third-party assets are used according to their respective licenses.  
 Proper credits will be provided in-game and/or in the project documentation.
 
