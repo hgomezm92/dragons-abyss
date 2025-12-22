@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp4epjfsctt7x"]
+[gd_scene load_steps=13 format=3 uid="uid://dp4epjfsctt7x"]
 
 [ext_resource type="Script" uid="uid://b2ita3e00dvrk" path="res://scripts/projectiles/fireball.gd" id="1_kkddm"]
+[ext_resource type="AudioStream" uid="uid://cwflthqk1ko4x" path="res://assets/audio/sfx/Fire_ImpactF1.wav" id="2_283ag"]
 [ext_resource type="Texture2D" uid="uid://cvwjkly1q3ta4" path="res://assets/animations/projectiles/fireball/B500-2.PNG" id="2_fcyka"]
 [ext_resource type="Texture2D" uid="uid://y3ntssodhiok" path="res://assets/animations/projectiles/fireball/B500-3.PNG" id="3_283ag"]
 [ext_resource type="Texture2D" uid="uid://d2gxouk2fnjig" path="res://assets/animations/projectiles/fireball/B500-4.PNG" id="4_dax74"]
@@ -56,6 +57,7 @@ scale = Vector2(0.05, 0.05)
 collision_layer = 2
 collision_mask = 12
 script = ExtResource("1_kkddm")
+impact_sfx = ExtResource("2_283ag")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wyo3q")

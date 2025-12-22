@@ -2,9 +2,14 @@ extends CharacterBody2D
 
 @export var fireball_scene: PackedScene
 @export var shoot_position: Marker2D
+@export var shoot_sfx: AudioStream
+@export var hit_sfx: AudioStream
+@export var game_over_sfx: AudioStream
+
+
 @onready var _animation = $AnimatedSprite2D
 
-var _speed: float = 300.0
+var _speed: float = 600.0
 var _screen_size: Vector2
 var _health: int = 7
 var _knockback_velocity: Vector2 = Vector2.ZERO
@@ -72,10 +77,12 @@ func _shoot_fireball() -> void:
 	
 	# Añadir la bola a la escena
 	get_tree().current_scene.add_child(fireball)
+	AudioManager.play_sfx(shoot_sfx)
 	
 func _take_damage(dmg: int):
 	_health -= dmg
 	damage_taken.emit(_health)
+	AudioManager.play_sfx(hit_sfx)
 	
 	var tween = create_tween()
 	tween.tween_property(
@@ -96,6 +103,8 @@ func _take_damage(dmg: int):
 
 func _death():
 	player_dead.emit("Game Over")
+	AudioManager.play_sfx(game_over_sfx)
+
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_hitbox"):

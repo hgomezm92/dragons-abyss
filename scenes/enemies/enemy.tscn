@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://b7aghcwevv3mr"]
+[gd_scene load_steps=38 format=3 uid="uid://b7aghcwevv3mr"]
 
 [ext_resource type="Script" uid="uid://d1maobrce47in" path="res://scripts/enemies/enemy.gd" id="1_bsing"]
 [ext_resource type="Texture2D" uid="uid://bumgiibm5m7ci" path="res://assets/animations/enemies/demon/HURT.png" id="2_71rcx"]
 [ext_resource type="Texture2D" uid="uid://ddoc22miwi5am" path="res://assets/animations/enemies/demon/DEATH.png" id="2_d4cuo"]
 [ext_resource type="Texture2D" uid="uid://cux2cq3wktycb" path="res://assets/animations/enemies/demon/ATTACK.png" id="2_h8ps3"]
+[ext_resource type="AudioStream" uid="uid://c20ldeyc8wxfx" path="res://assets/audio/sfx/mixkit-enemy-death-voice-3168.wav" id="2_n7575"]
 [ext_resource type="Texture2D" uid="uid://bq075nwqrmkb0" path="res://assets/animations/enemies/demon/IDLE.png" id="3_71rcx"]
 [ext_resource type="Texture2D" uid="uid://fhjhendd1afh" path="res://assets/animations/ui/sprHeart.png" id="5_xsfyf"]
 [ext_resource type="Script" uid="uid://3uyr54e0nb10" path="res://scripts/enemies/hitbox.gd" id="7_ebxvl"]
@@ -228,6 +229,7 @@ animation = NodePath("AnimatedSprite2D")
 collision = NodePath("CollisionShape2D")
 hearts = NodePath("Hearts")
 hitbox = NodePath("Hitbox")
+death_sfx = ExtResource("2_n7575")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wpivu")

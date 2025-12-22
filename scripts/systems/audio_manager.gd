@@ -6,13 +6,15 @@ var music_tween: Tween
 func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "Music"
+	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	add_child(music_player)
 	
 	_set_default_volumes()
 
 func _set_default_volumes() -> void:
 	_set_bus_volume("Master", 0.0)
-	_set_bus_volume("Music", -12.0)
+	_set_bus_volume("Music", -30.0)
 	_set_bus_volume("SFX", -6.0)
 
 func _set_bus_volume(bus_name: String, volume_db: float) -> void:
@@ -63,6 +65,7 @@ func stop_music() -> void:
 
 func play_sfx(stream: AudioStream) -> void:
 	var sfx_player := AudioStreamPlayer.new()
+	sfx_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	sfx_player.stream = stream
 	sfx_player.bus = "SFX"
 	add_child(sfx_player)

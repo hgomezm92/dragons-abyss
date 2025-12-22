@@ -1,7 +1,9 @@
 extends Area2D
 
 @onready var animation = $AnimatedSprite2D
-var _speed: float = 250.0
+@export var impact_sfx: AudioStream
+
+var _speed: float = 500.0
 var direction: Vector2 = Vector2.ZERO
 var _is_exploding: bool
 
@@ -17,6 +19,7 @@ func _process(delta: float) -> void:
 func _explode():
 	_is_exploding = true
 	animation.play("explode")
+	AudioManager.play_sfx(impact_sfx)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):

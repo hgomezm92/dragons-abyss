@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfkf0dl87l5hv"]
+[gd_scene load_steps=3 format=3 uid="uid://cfkf0dl87l5hv"]
 
 [ext_resource type="Script" uid="uid://dupc2pg3id5f0" path="res://scripts/systems/game_manager.gd" id="1_sry45"]
+[ext_resource type="AudioStream" uid="uid://c20ldeyc8wxfx" path="res://assets/audio/sfx/mixkit-enemy-death-voice-3168.wav" id="2_rcobk"]
 
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sry45")
+game_over_sfx = ExtResource("2_rcobk")

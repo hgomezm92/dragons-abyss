@@ -16,7 +16,7 @@ func _ready() -> void:
 		1
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
-	AudioManager.play_music_with_fade(music_menu)
+	AudioManager.play_music(music_menu)
 
 func _on_start_pressed() -> void:
 	create_tween().tween_property(
@@ -42,7 +42,7 @@ func _on_credits_pressed() -> void:
 		1
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
-	AudioManager.play_music_with_fade(credits_music)
+	AudioManager.play_music(credits_music)
 	
 	await get_tree().create_timer(0.75).timeout
 	get_tree().change_scene_to_packed(credits)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnlb0dxhua1q5"]
+[gd_scene load_steps=12 format=3 uid="uid://cnlb0dxhua1q5"]
 
 [ext_resource type="Script" uid="uid://tpn831f62v6h" path="res://scripts/ui/credits.gd" id="1_0h4vu"]
 [ext_resource type="Texture2D" uid="uid://by61cenmqvghj" path="res://themes/panel_menu.tres" id="1_pqmjv"]
 [ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="2_e5ls7"]
-[ext_resource type="AudioStream" uid="uid://y8rab6xr5ufm" path="res://assets/audio/music/7. Mystic Grove.ogg" id="2_jjkal"]
 [ext_resource type="FontFile" uid="uid://cxvsogncyw85k" path="res://assets/fonts/m6x11plus.ttf" id="3_y0bee"]
 [ext_resource type="Theme" uid="uid://csg3kd0k6v0uk" path="res://themes/buttons/button.tres" id="6_egc5o"]
 [ext_resource type="StyleBox" uid="uid://cx1y1c5niktmr" path="res://themes/buttons/normal.tres" id="7_rapck"]
@@ -17,7 +16,6 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Credits" type="CanvasLayer"]
 script = ExtResource("1_0h4vu")
-credits_music = ExtResource("2_jjkal")
 
 [node name="Background" type="Panel" parent="."]
 z_index = -1
@@ -36,44 +34,92 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_pqmjv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="Head" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -93.5
-offset_top = -38.0
-offset_right = 93.5
-offset_bottom = 38.0
+offset_left = -230.5
+offset_right = 230.5
+offset_bottom = 81.0
 grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Head" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
 theme = ExtResource("2_e5ls7")
 theme_override_fonts/font = ExtResource("3_y0bee")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 80
 text = "CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Fonts" type="Label" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -232.0
+offset_right = 525.0
+offset_bottom = 360.0
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_e5ls7")
 theme_override_fonts/font = ExtResource("3_y0bee")
 theme_override_font_sizes/font_size = 50
-text = "ASSETS (itch.io):
+text = "GRAPHICS:
     ToffeeCraft
     Reaktori
     Mattz Art
     Szadi art
 FONTS:
     Gotfridus by GGBotNet
-    m6x11 by Daniel Linssen
+    m6x11 by Daniel Linssen"
+vertical_alignment = 1
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -616.0
+offset_top = -232.0
+offset_right = -60.0
+offset_bottom = 305.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_e5ls7")
+theme_override_fonts/font = ExtResource("3_y0bee")
+theme_override_font_sizes/font_size = 50
+text = "AUDIO:
+    Purgatory by David KBD
+    Fantasy medieval by alkakrab
+    Tim (itch.io)"
+vertical_alignment = 1
+
+[node name="Foot" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.5
+offset_top = -67.0
+offset_right = 230.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_e5ls7")
+theme_override_fonts/font = ExtResource("3_y0bee")
+theme_override_font_sizes/font_size = 50
+text = "All assets are from itch.io
 Made with Godot"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Return" type="Button" parent="Panel"]
@@ -83,10 +129,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -88.0
-offset_top = -48.0
-offset_right = -17.0
-offset_bottom = -17.0
+offset_left = -199.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -28.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("6_egc5o")

@@ -15,7 +15,7 @@ signal win
 signal enemy_count_changed
 
 func _get_enemy_count_for_wave(wave):
-	return 5 + wave * 2
+	return 8 + wave * 3
 
 func start_wave() -> void:
 	_enemies_to_spawn = _get_enemy_count_for_wave(_wave_count)
@@ -86,5 +86,5 @@ func _on_enemy_spawn_timer_timeout() -> void:
 		
 func reset():
 	_wave_count = 1
-	_spawn_interval = 2.0
+	_spawn_interval = 1.0
 	_enemy_timer.stop()

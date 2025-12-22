@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cibmpbeturpqk" path="res://scripts/main/main.gd" id="1_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://cfkf0dl87l5hv" path="res://scenes/systems/game_manager.tscn" id="2_6q06x"]
 [ext_resource type="PackedScene" uid="uid://vco48qus0oy0" path="res://scenes/player/player.tscn" id="3_ow5a4"]
-[ext_resource type="AudioStream" uid="uid://of8ydek6kdw3" path="res://assets/audio/music/13 - DavidKBD - Purgatory Pack - MiniLoop 05.ogg" id="4_a8run"]
+[ext_resource type="AudioStream" uid="uid://ewws7qu70300" path="res://assets/audio/sfx/mixkit-orchestra-game-over-1950.wav" id="4_a8run"]
 [ext_resource type="PackedScene" uid="uid://buvxgstxs1cu0" path="res://scenes/ui/hud.tscn" id="4_hujxm"]
 [ext_resource type="PackedScene" uid="uid://drdm14b5pvj1j" path="res://scenes/systems/enemy_spawner.tscn" id="4_l3cfh"]
 [ext_resource type="PackedScene" uid="uid://lqlerh34caxs" path="res://scenes/maps/background.tscn" id="6_ow5a4"]
@@ -24,7 +24,7 @@ player = NodePath("../Player")
 enemy_spawner = NodePath("../EnemySpawner")
 pause_menu = NodePath("../PauseMenu")
 wave_message = NodePath("../WaveMessage")
-game_music = ExtResource("4_a8run")
+game_over_sfx = ExtResource("4_a8run")
 
 [node name="Player" parent="." instance=ExtResource("3_ow5a4")]
 

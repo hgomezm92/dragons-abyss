@@ -3,8 +3,10 @@ extends CharacterBody2D
 @export var animation: AnimatedSprite2D
 @export var collision: CollisionShape2D
 @export var hearts: AnimatedSprite2D
-@export var speed: int = 150
+@export var speed: int = 300
 @export var hitbox: Area2D
+@export var death_sfx: AudioStream
+
 var _health: int = 2
 var _player: CharacterBody2D
 
@@ -43,6 +45,7 @@ func take_damage(dmg: int):
 
 func _death():
 	animation.play("death")
+	AudioManager.play_sfx(death_sfx)
 	hitbox.remove_from_group("enemy_hitbox")
 	self.collision_layer = 0
 	self.collision_mask = 0
