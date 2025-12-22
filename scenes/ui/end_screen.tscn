@@ -41,6 +41,8 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme = ExtResource("2_wgyui")
 text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Restart" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2

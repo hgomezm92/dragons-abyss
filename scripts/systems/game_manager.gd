@@ -5,6 +5,7 @@ extends Node
 @export var enemy_spawner: Node
 @export var pause_menu: CanvasLayer
 @export var wave_message: CanvasLayer
+
 var _end_scene: PackedScene = preload("res://scenes/ui/end_screen.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -54,6 +55,7 @@ func _end(text: String):
 func _restart():
 	get_tree().paused = false
 	get_tree().call_group("enemy", "queue_free")
+	await get_tree().create_timer(0.25).timeout
 	get_tree().reload_current_scene()
 	
 func _go_to_menu():

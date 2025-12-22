@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+
 func _ready() -> void:
 	get_child(1).modulate.a = 0.0
 	create_tween().tween_property(
@@ -8,7 +9,6 @@ func _ready() -> void:
 		1.0,
 		1
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-
 func _on_return_pressed() -> void:
 	create_tween().tween_property(
 		get_child(1),

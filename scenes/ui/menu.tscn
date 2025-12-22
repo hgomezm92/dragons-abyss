@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://duu6ce53aitov"]
+[gd_scene load_steps=14 format=3 uid="uid://duu6ce53aitov"]
 
 [ext_resource type="Script" uid="uid://dfmenro3a67pm" path="res://scripts/ui/menu.gd" id="1_wedc3"]
-[ext_resource type="PackedScene" uid="uid://mqy6u8kyumo6" path="res://scenes/main/main.tscn" id="2_c2n5p"]
+[ext_resource type="AudioStream" uid="uid://5t7os64hrg2k" path="res://assets/audio/music/33 - DavidKBD - Purgatory Pack - MiniLoop 25.ogg" id="2_288ov"]
 [ext_resource type="Texture2D" uid="uid://by61cenmqvghj" path="res://themes/panel_menu.tres" id="3_288ov"]
 [ext_resource type="PackedScene" uid="uid://b6ajjw14dik3m" path="res://scenes/ui/cursor.tscn" id="3_c2n5p"]
-[ext_resource type="PackedScene" uid="uid://cnlb0dxhua1q5" path="res://scenes/ui/credits.tscn" id="3_tub5d"]
+[ext_resource type="AudioStream" uid="uid://of8ydek6kdw3" path="res://assets/audio/music/13 - DavidKBD - Purgatory Pack - MiniLoop 05.ogg" id="3_dnmb1"]
 [ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="3_w6y0u"]
+[ext_resource type="AudioStream" uid="uid://y8rab6xr5ufm" path="res://assets/audio/music/7. Mystic Grove.ogg" id="4_5j7hh"]
 [ext_resource type="Theme" uid="uid://csg3kd0k6v0uk" path="res://themes/buttons/button.tres" id="4_cx0sj"]
 [ext_resource type="StyleBox" uid="uid://cx1y1c5niktmr" path="res://themes/buttons/normal.tres" id="5_1pxh0"]
 [ext_resource type="StyleBox" uid="uid://cd1ecq0wuooqr" path="res://themes/buttons/pressed.tres" id="6_e11en"]
@@ -17,8 +18,9 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_wedc3")
-main = ExtResource("2_c2n5p")
-credits = ExtResource("3_tub5d")
+music_menu = ExtResource("2_288ov")
+game_music = ExtResource("3_dnmb1")
+credits_music = ExtResource("4_5j7hh")
 
 [node name="Background" type="Panel" parent="."]
 anchors_preset = 15

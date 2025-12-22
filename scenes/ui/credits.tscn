@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnlb0dxhua1q5"]
+[gd_scene load_steps=13 format=3 uid="uid://cnlb0dxhua1q5"]
 
 [ext_resource type="Script" uid="uid://tpn831f62v6h" path="res://scripts/ui/credits.gd" id="1_0h4vu"]
 [ext_resource type="Texture2D" uid="uid://by61cenmqvghj" path="res://themes/panel_menu.tres" id="1_pqmjv"]
 [ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="2_e5ls7"]
+[ext_resource type="AudioStream" uid="uid://y8rab6xr5ufm" path="res://assets/audio/music/7. Mystic Grove.ogg" id="2_jjkal"]
 [ext_resource type="FontFile" uid="uid://cxvsogncyw85k" path="res://assets/fonts/m6x11plus.ttf" id="3_y0bee"]
 [ext_resource type="Theme" uid="uid://csg3kd0k6v0uk" path="res://themes/buttons/button.tres" id="6_egc5o"]
 [ext_resource type="StyleBox" uid="uid://cx1y1c5niktmr" path="res://themes/buttons/normal.tres" id="7_rapck"]
@@ -16,6 +17,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="Credits" type="CanvasLayer"]
 script = ExtResource("1_0h4vu")
+credits_music = ExtResource("2_jjkal")
 
 [node name="Background" type="Panel" parent="."]
 z_index = -1
