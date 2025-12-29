@@ -1,5 +1,6 @@
 extends Control
 
+@export var panel: Panel
 @export var master_slider: HSlider
 @export var music_slider: HSlider
 @export var sfx_slider: HSlider
@@ -7,7 +8,7 @@ extends Control
 const _MUTE_MAX_DB: float = -80.0
 const _MASTER_MAX_DB: float = 0.0
 const _MUSIC_MAX_DB: float = -30.0
-const _SFX_MAX_DB: float = -6.0
+const _SFX_MAX_DB: float = -18.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,3 +37,7 @@ func volume_to_linear(value: float, max_db: float) -> float:
 	if value <= _MUTE_MAX_DB:
 		return 0.0
 	return db_to_linear(value - max_db)
+
+
+func _on_volume_button_pressed() -> void:
+	panel.visible = !panel.visible

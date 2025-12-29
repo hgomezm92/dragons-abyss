@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c6yloqtjpw100"]
+
+[ext_resource type="Texture2D" uid="uid://oy7f7cxypq6q" path="res://assets/sprites/FreeHorrorUi.png" id="1_n0jgm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ir1u"]
+atlas = ExtResource("1_n0jgm")
+region = Rect2(105, 105, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxt4t"]
+atlas = ExtResource("1_n0jgm")
+region = Rect2(105, 105, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgkbu"]
+atlas = ExtResource("1_n0jgm")
+region = Rect2(105, 105, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ir1u"]
+bg_color = Color(0.84313726, 0.8156863, 0.7529412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgkbu"]
+bg_color = Color(0.84313726, 0.8156863, 0.7529412, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[resource]
+HSlider/icons/grabber = SubResource("AtlasTexture_6ir1u")
+HSlider/icons/grabber_disabled = SubResource("AtlasTexture_bxt4t")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_bgkbu")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_6ir1u")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_bgkbu")

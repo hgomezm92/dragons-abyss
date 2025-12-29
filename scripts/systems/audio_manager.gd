@@ -15,7 +15,7 @@ func _ready() -> void:
 func _set_default_volumes() -> void:
 	set_bus_volume("Master", 0.0)
 	set_bus_volume("Music", -30.0)
-	set_bus_volume("SFX", -6.0)
+	set_bus_volume("SFX", -18.0)
 	
 func get_bus_volume(bus_name: String) -> float:
 	var bus_index = AudioServer.get_bus_index(bus_name)
