@@ -1,44 +1,62 @@
 # Dragon’s Abyss
 
-**Dragon’s Abyss** is a top-down action game where you control a dragon and survive increasingly difficult waves of enemies.  
-The game focuses on fast-paced combat, progression through upgrades, and gradual difficulty scaling.
+Dragon’s Abyss is a small experimental game I created primarily as a learning project.
 
-This project is currently in active development.
+The main goal of this project is not to build a polished or commercially viable game, but to learn how games are made: how systems connect, how to structure a project, how to manage scenes, audio, UI and basic gameplay loops.
+
+There was no strict design document or final vision from the start. Features and ideas were added gradually as part of the learning process.
+
+At the moment, the game focuses on functionality rather than balance or polish. The gameplay loop and difficulty are intentionally simple and not fully tuned, as the priority has been understanding how to make systems work correctly before refining them.
+
+The project uses assets from different creators, and visual/audio consistency is not a current goal.
 
 ---
 
-## Current Status
+Current features:
 
-The game is in an **early development stage**.
+- Top-down survival gameplay
 
-Implemented features so far:
-- Wave-based enemy system
+- 5 enemy waves
+
 - Player movement and shooting
-- Basic knockback and collisions
-- Camera following the player with map limits
-- Tile-based map with solid collisions
-- HUD with wave counter and remaining enemies
-- Pause menu
 
-Planned features include:
-- New enemy types
-- Elemental damage system
-- Post-wave upgrades
-- Improved visuals and sound design
-- Balancing and polish
+- Basic enemy AI
+
+- Menus, pause system, audio settings
+
+- Win and game over screens
+
+Future learning goals include:
+
+- More complex enemy behaviors
+
+- Elemental effects and upgrades between waves
+
+- Better project architecture and refactoring
+
+This project will continue evolving as a sandbox for experimentation and learning.
+
+---
+
+Controls:
+
+• Move: WASD / Arrow Keys
+
+• Aim: Mouse
+
+• Shoot: Left Mouse Button / Space
+
+• Pause: Esc
 
 ---
 
-## How to Play
+Version: 0.0.8
 
-- **Move:** WASD
-- **Aim:** Mouse
-- **Shoot:** Left Mouse Button or Space
-- **Pause:** ESC
+Platform: Windows/HTML
 
-Survive as many waves as possible by defeating enemies and upgrading your abilities between waves.
+Development status: Early build
 
----
+This build focuses on core mechanics and may receive balance and content updates.
 
 ## Engine
 
