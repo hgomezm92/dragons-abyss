@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://duu6ce53aitov"]
+[gd_scene load_steps=15 format=3 uid="uid://duu6ce53aitov"]
 
 [ext_resource type="Script" uid="uid://dfmenro3a67pm" path="res://scripts/ui/menu.gd" id="1_wedc3"]
 [ext_resource type="AudioStream" uid="uid://5t7os64hrg2k" path="res://assets/audio/music/33 - DavidKBD - Purgatory Pack - MiniLoop 25.ogg" id="2_288ov"]
@@ -12,6 +12,7 @@
 [ext_resource type="StyleBox" uid="uid://cd1ecq0wuooqr" path="res://themes/buttons/pressed.tres" id="6_e11en"]
 [ext_resource type="StyleBox" uid="uid://ceo5y8hndrelp" path="res://themes/buttons/hover.tres" id="7_288ov"]
 [ext_resource type="StyleBox" uid="uid://ds0rybawj1ohp" path="res://themes/buttons/focus.tres" id="8_e11en"]
+[ext_resource type="PackedScene" uid="uid://gcm3sptliwxt" path="res://scenes/ui/volume_control.tscn" id="12_5j7hh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_288ov"]
 bg_color = Color(0, 0, 0, 1)
@@ -132,6 +133,9 @@ grow_horizontal = 2
 theme = ExtResource("3_w6y0u")
 theme_override_font_sizes/font_size = 16
 text = "WORK IN PROGRESS"
+
+[node name="VolumeControl" parent="Panel" instance=ExtResource("12_5j7hh")]
+layout_mode = 0
 
 [node name="Cursor" parent="." instance=ExtResource("3_c2n5p")]
 

@@ -13,11 +13,24 @@ func _ready() -> void:
 	_set_default_volumes()
 
 func _set_default_volumes() -> void:
-	_set_bus_volume("Master", 0.0)
-	_set_bus_volume("Music", -30.0)
-	_set_bus_volume("SFX", -6.0)
+	set_bus_volume("Master", 0.0)
+	set_bus_volume("Music", -30.0)
+	set_bus_volume("SFX", -6.0)
+	
+func get_bus_volume(bus_name: String) -> float:
+	var bus_index = AudioServer.get_bus_index(bus_name)
+	var bus_volume: float = 0.0
+	if bus_index != -1:
+		bus_volume = AudioServer.get_bus_volume_db(bus_index)
+	return bus_volume
+	
+func get_music_volume():
+	pass
+	
+func get_sfx_volume():
+	pass
 
-func _set_bus_volume(bus_name: String, volume_db: float) -> void:
+func set_bus_volume(bus_name: String, volume_db: float) -> void:
 	var bus_index := AudioServer.get_bus_index(bus_name)
 	if bus_index != -1:
 		AudioServer.set_bus_volume_db(bus_index, volume_db)
