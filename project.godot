@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="DragonsAbyss"
+config/name="Dragons Abyss"
+config/version="0.0.8"
 run/main_scene="uid://duu6ce53aitov"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
