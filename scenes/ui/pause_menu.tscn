@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw6vq5coxkkih"]
+[gd_scene load_steps=11 format=3 uid="uid://cw6vq5coxkkih"]
 
 [ext_resource type="Script" uid="uid://c4iguackufrim" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
 [ext_resource type="Theme" uid="uid://ytwaaicmtvpu" path="res://themes/fonts/fonts.tres" id="2_0lmf7"]
@@ -9,6 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://ceo5y8hndrelp" path="res://themes/buttons/hover.tres" id="6_coo1x"]
 [ext_resource type="StyleBox" uid="uid://ds0rybawj1ohp" path="res://themes/buttons/focus.tres" id="7_2jkta"]
 [ext_resource type="PackedScene" uid="uid://gcm3sptliwxt" path="res://scenes/ui/volume_control.tscn" id="9_coo1x"]
+[ext_resource type="PackedScene" uid="uid://0g5hyvhlf3th" path="res://scenes/ui/controls.tscn" id="10_2jkta"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -74,6 +75,8 @@ text = "MENU"
 
 [node name="VolumeControl" parent="Panel" instance=ExtResource("9_coo1x")]
 layout_mode = 0
+
+[node name="Controls" parent="Panel" instance=ExtResource("10_2jkta")]
 
 [connection signal="pressed" from="Panel/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
