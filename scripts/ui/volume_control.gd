@@ -38,6 +38,5 @@ func volume_to_linear(value: float, max_db: float) -> float:
 		return 0.0
 	return db_to_linear(value - max_db)
 
-
 func _on_volume_button_pressed() -> void:
 	panel.visible = !panel.visible

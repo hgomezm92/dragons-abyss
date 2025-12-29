@@ -71,9 +71,7 @@ text = "GRAPHICS:
     Reaktori
     Mattz Art
     Szadi art
-FONTS:
-    Gotfridus by GGBotNet
-    m6x11 by Daniel Linssen"
+    SunGraphica"
 vertical_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
@@ -98,7 +96,10 @@ theme_override_font_sizes/font_size = 50
 text = "AUDIO:
     Purgatory by David KBD
     Fantasy medieval by alkakrab
-    Tim (itch.io)"
+    Magic Attacks by timothyadan
+FONTS:
+    Gotfridus by GGBotNet
+    m6x11 by Daniel Linssen"
 vertical_alignment = 1
 
 [node name="Foot" type="Label" parent="Panel"]
